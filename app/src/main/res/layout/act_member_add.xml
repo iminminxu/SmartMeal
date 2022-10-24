@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/color_e6e6e6" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_id_card_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_14"
+            android:layout_marginTop="@dimen/dp_40"
+            android:text="身份证号："
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_id_card"
+            android:layout_width="@dimen/dp_345"
+            android:layout_height="@dimen/dp_35"
+            android:background="@drawable/corners_3_stroke_1_c5c8cb"
+            android:gravity="center_vertical"
+            android:hint="请输入身份证号"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="@dimen/dp_11"
+            android:paddingEnd="@dimen/dp_11"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_999999"
+            android:textSize="@dimen/font_11"
+            app:layout_constraintBottom_toBottomOf="@id/tv_id_card_hint"
+            app:layout_constraintLeft_toRightOf="@id/tv_id_card_hint"
+            app:layout_constraintTop_toTopOf="@id/tv_id_card_hint" />
+
+        <TextView
+            android:id="@+id/tv_name_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_40"
+            android:text="姓名："
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintRight_toRightOf="@id/tv_id_card_hint"
+            app:layout_constraintTop_toBottomOf="@id/tv_id_card_hint" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_35"
+            android:background="@drawable/corners_3_stroke_1_c5c8cb"
+            android:gravity="center_vertical"
+            android:hint="请输入姓名"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="@dimen/dp_11"
+            android:paddingEnd="@dimen/dp_11"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_999999"
+            android:textSize="@dimen/font_11"
+            app:layout_constraintBottom_toBottomOf="@id/tv_name_hint"
+            app:layout_constraintLeft_toLeftOf="@id/et_id_card"
+            app:layout_constraintRight_toRightOf="@id/et_id_card"
+            app:layout_constraintTop_toTopOf="@id/tv_name_hint" />
+
+        <TextView
+            android:id="@+id/tv_mobile_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:text="联系电话："
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintBottom_toBottomOf="@id/tv_name_hint"
+            app:layout_constraintLeft_toRightOf="@id/et_name"
+            app:layout_constraintTop_toTopOf="@id/tv_name_hint" />
+
+        <EditText
+            android:id="@+id/et_mobile"
+            android:layout_width="@dimen/dp_345"
+            android:layout_height="@dimen/dp_35"
+            android:background="@drawable/corners_3_stroke_1_c5c8cb"
+            android:gravity="center_vertical"
+            android:hint="请输入联系电话"
+            android:inputType="number"
+            android:maxLines="1"
+            android:paddingStart="@dimen/dp_11"
+            android:paddingEnd="@dimen/dp_11"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_999999"
+            android:textSize="@dimen/font_11"
+            app:layout_constraintBottom_toBottomOf="@id/tv_name_hint"
+            app:layout_constraintLeft_toRightOf="@id/tv_mobile_hint"
+            app:layout_constraintTop_toTopOf="@id/tv_name_hint" />
+
+        <TextView
+            android:id="@+id/tv_address_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_40"
+            android:text="居住地址："
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintRight_toRightOf="@id/tv_id_card_hint"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_hint" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_35"
+            android:background="@drawable/corners_3_stroke_1_c5c8cb"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:hint="请选择居住地址"
+            android:maxLines="1"
+            android:paddingStart="@dimen/dp_11"
+            android:paddingEnd="@dimen/dp_11"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_999999"
+            android:textSize="@dimen/font_11"
+            app:layout_constraintBottom_toBottomOf="@id/tv_address_hint"
+            app:layout_constraintLeft_toLeftOf="@id/et_id_card"
+            app:layout_constraintRight_toRightOf="@id/et_id_card"
+            app:layout_constraintTop_toTopOf="@id/tv_address_hint" />
+
+        <TextView
+            android:id="@+id/tv_address_detail_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="详细地址："
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintBottom_toBottomOf="@id/tv_address_hint"
+            app:layout_constraintRight_toRightOf="@id/tv_mobile_hint"
+            app:layout_constraintTop_toTopOf="@id/tv_address_hint" />
+
+        <EditText
+            android:id="@+id/et_address_detail"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_35"
+            android:background="@drawable/corners_3_stroke_1_c5c8cb"
+            android:gravity="center_vertical"
+            android:hint="请输入详细地址"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="@dimen/dp_11"
+            android:paddingEnd="@dimen/dp_11"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_999999"
+            android:textSize="@dimen/font_11"
+            app:layout_constraintBottom_toBottomOf="@id/tv_address_hint"
+            app:layout_constraintLeft_toLeftOf="@id/et_mobile"
+            app:layout_constraintRight_toRightOf="@id/et_mobile"
+            app:layout_constraintTop_toTopOf="@id/tv_address_hint" />
+
+        <TextView
+            android:id="@+id/tv_card_no_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_40"
+            android:text="卡号："
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintRight_toRightOf="@id/tv_id_card_hint"
+            app:layout_constraintTop_toBottomOf="@id/tv_address_hint" />
+
+        <EditText
+            android:id="@+id/et_card_no"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_35"
+            android:background="@drawable/corners_3_stroke_1_c5c8cb"
+            android:gravity="center_vertical"
+            android:hint="请输入卡号"
+            android:inputType="textVisiblePassword"
+            android:maxLines="1"
+            android:paddingStart="@dimen/dp_11"
+            android:paddingEnd="@dimen/dp_11"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_999999"
+            android:textSize="@dimen/font_11"
+            app:layout_constraintBottom_toBottomOf="@id/tv_card_no_hint"
+            app:layout_constraintLeft_toLeftOf="@id/et_id_card"
+            app:layout_constraintRight_toRightOf="@id/et_id_card"
+            app:layout_constraintTop_toTopOf="@id/tv_card_no_hint" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            android:layout_marginBottom="@dimen/dp_11"
+            android:background="@color/color_e6e6e6"
+            app:layout_constraintBottom_toTopOf="@id/tv_confirm"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:layout_width="@dimen/dp_68"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginStart="@dimen/dp_18"
+            android:layout_marginBottom="@dimen/dp_11"
+            android:background="@drawable/corners_3_solid_ec7220"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_13"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

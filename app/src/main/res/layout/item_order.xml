@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dp_13"
+    android:layout_marginTop="@dimen/dp_13"
+    android:layout_marginEnd="@dimen/dp_13"
+    android:background="@drawable/corners_3_solid_white"
+    android:orientation="vertical">
+
+    <include layout="@layout/item_order_title" />
+
+    <include
+        layout="@layout/item_order_user_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_18" />
+
+    <TextView
+        android:id="@+id/tv_take_meal_way"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_13"
+        android:layout_marginTop="@dimen/dp_11"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_13"
+        android:textStyle="bold"
+        tools:text="取餐方式：堂食" />
+
+    <TextView
+        android:id="@+id/tv_take_meal_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_13"
+        android:layout_marginTop="@dimen/dp_6"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_13"
+        android:textStyle="bold"
+        tools:text="取餐码：7786" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginStart="@dimen/dp_13"
+        android:layout_marginTop="@dimen/dp_13"
+        android:layout_marginEnd="@dimen/dp_13"
+        android:background="@color/color_f0f0f0" />
+
+    <TextView
+        android:id="@+id/tv_commodity_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_13"
+        android:layout_marginTop="@dimen/dp_10"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_13"
+        tools:text="商品（2）" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_commodity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_13"
+        android:layout_marginTop="@dimen/dp_13"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_13"
+        android:textStyle="bold"
+        tools:text="开始配送日期：2022-04-22" />
+
+    <TextView
+        android:id="@+id/tv_combo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_13"
+        android:layout_marginTop="@dimen/dp_6"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_13"
+        android:textStyle="bold"
+        tools:text="预定套餐：一荤两素" />
+
+    <TextView
+        android:id="@+id/tv_period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_13"
+        android:layout_marginTop="@dimen/dp_6"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_13"
+        android:textStyle="bold"
+        tools:text="预定时间段：午餐 晚餐" />
+
+    <TextView
+        android:id="@+id/tv_remark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_13"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_13"
+        android:background="@drawable/corners_1_solid_fafafa"
+        android:lineSpacingExtra="@dimen/dp_5"
+        android:paddingStart="@dimen/dp_11"
+        android:paddingTop="@dimen/dp_8"
+        android:paddingEnd="@dimen/dp_11"
+        android:paddingBottom="@dimen/dp_8"
+        android:textColor="@color/color_ec7220"
+        android:textSize="@dimen/font_12"
+        tools:text="备注：" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginTop="@dimen/dp_18"
+        android:background="@color/color_e6e6e6" />
+
+    <include layout="@layout/item_order_operate" />
+</LinearLayout>

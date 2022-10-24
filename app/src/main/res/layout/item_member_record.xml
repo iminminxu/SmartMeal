@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_39"
+    android:paddingStart="@dimen/dp_14"
+    android:paddingEnd="@dimen/dp_14">
+
+    <TextView
+        android:id="@+id/tv_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_12"
+        tools:text="消费时间：2022-01-20  10:30" />
+
+    <TextView
+        android:id="@+id/tv_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_12"
+        tools:text="实付金额：200" />
+
+    <TextView
+        android:id="@+id/tv_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|end"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_12"
+        tools:text="充值金额：120" />
+</FrameLayout>

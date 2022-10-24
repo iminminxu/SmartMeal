@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_2a2726"
+    android:divider="@drawable/divider_1_010101"
+    android:orientation="horizontal"
+    android:showDividers="middle">
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_84"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="@dimen/dp_34"
+            android:layout_height="@dimen/dp_34"
+            android:layout_marginTop="@dimen/dp_29"
+            android:src="@drawable/icon_avatar_def" />
+
+        <TextView
+            android:id="@+id/tv_mobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_7"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_10"
+            tools:text="152****8900" />
+
+        <TextView
+            android:id="@+id/tv_statistical_statement"
+            android:layout_width="@dimen/dp_75"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/corners_3_solid_ec7220"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"
+            android:text="统计报表"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_13" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@color/color_010101" />
+
+        <LinearLayout
+            android:id="@+id/ll_cashier"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_92"
+            android:background="@color/color_ec7220"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dp_22"
+                android:layout_height="@dimen/dp_22"
+                android:src="@drawable/icon_home_cashier" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="收银/点餐"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_13" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/color_010101" />
+
+        <LinearLayout
+            android:id="@+id/ll_pending"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_92"
+            android:background="@color/color_00000000"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dp_22"
+                android:layout_height="@dimen/dp_22"
+                android:src="@drawable/icon_home_pending" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="待处理"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_13" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/color_010101" />
+
+        <LinearLayout
+            android:id="@+id/ll_recharge"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_92"
+            android:background="@color/color_00000000"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dp_22"
+                android:layout_height="@dimen/dp_22"
+                android:src="@drawable/icon_home_recharge" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="充值"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_13" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/color_010101" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

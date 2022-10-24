@@ -1,0 +1,33 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.SmartMeal" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <!-- 启动页 theme -->
+    <style name="SplashTheme" parent="Theme.SmartMeal">
+        <item name="android:windowBackground">@drawable/layer_list_splash</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+    </style>
+    <!-- PendingTabLayout -->
+    <style name="PendingTabLayoutAppearance">
+        <item name="android:textSize">@dimen/font_15</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!-- OrderTabLayout -->
+    <style name="OrderTabLayoutAppearance">
+        <item name="android:textSize">@dimen/font_13</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

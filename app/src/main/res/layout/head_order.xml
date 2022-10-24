@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dp_13"
+    android:layout_marginEnd="@dimen/dp_13">
+
+    <TextView
+        android:id="@+id/tv_turnover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_14"
+        android:textStyle="bold"
+        tools:text="今日总营业额" />
+
+    <TextView
+        android:id="@+id/tv_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_14"
+        android:textStyle="bold"
+        tools:text="今日交易数" />
+
+    <TextView
+        android:id="@+id/tv_print"
+        android:layout_width="@dimen/dp_101"
+        android:layout_height="@dimen/dp_30"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:background="@drawable/corners_3_solid_ec7220"
+        android:gravity="center"
+        android:text="日统计打印"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_13"
+        android:textStyle="bold" />
+</FrameLayout>

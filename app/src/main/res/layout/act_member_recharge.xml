@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/color_e6e6e6" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_id_card_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_14"
+            android:layout_marginTop="@dimen/dp_40"
+            android:text="身份证号："
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_id_card"
+            android:layout_width="@dimen/dp_345"
+            android:layout_height="@dimen/dp_35"
+            android:background="@drawable/corners_3_solid_f8f9fb_stroke_1_c5c8cb"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingStart="@dimen/dp_11"
+            android:paddingEnd="@dimen/dp_11"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_11"
+            app:layout_constraintBottom_toBottomOf="@id/tv_id_card_hint"
+            app:layout_constraintLeft_toRightOf="@id/tv_id_card_hint"
+            app:layout_constraintTop_toTopOf="@id/tv_id_card_hint" />
+
+        <TextView
+            android:id="@+id/tv_name_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_40"
+            android:text="姓名："
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintRight_toRightOf="@id/tv_id_card_hint"
+            app:layout_constraintTop_toBottomOf="@id/tv_id_card_hint" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_35"
+            android:background="@drawable/corners_3_solid_f8f9fb_stroke_1_c5c8cb"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingStart="@dimen/dp_11"
+            android:paddingEnd="@dimen/dp_11"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_11"
+            app:layout_constraintBottom_toBottomOf="@id/tv_name_hint"
+            app:layout_constraintLeft_toLeftOf="@id/tv_id_card"
+            app:layout_constraintRight_toRightOf="@id/tv_id_card"
+            app:layout_constraintTop_toTopOf="@id/tv_name_hint" />
+
+        <TextView
+            android:id="@+id/tv_mobile_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:text="联系电话："
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintBottom_toBottomOf="@id/tv_name_hint"
+            app:layout_constraintLeft_toRightOf="@id/tv_name"
+            app:layout_constraintTop_toTopOf="@id/tv_name_hint" />
+
+        <TextView
+            android:id="@+id/tv_mobile"
+            android:layout_width="@dimen/dp_345"
+            android:layout_height="@dimen/dp_35"
+            android:background="@drawable/corners_3_solid_f8f9fb_stroke_1_c5c8cb"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingStart="@dimen/dp_11"
+            android:paddingEnd="@dimen/dp_11"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_11"
+            app:layout_constraintBottom_toBottomOf="@id/tv_name_hint"
+            app:layout_constraintLeft_toRightOf="@id/tv_mobile_hint"
+            app:layout_constraintTop_toTopOf="@id/tv_name_hint" />
+
+        <TextView
+            android:id="@+id/tv_card_no_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_40"
+            android:text="卡号："
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintRight_toRightOf="@id/tv_id_card_hint"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_hint" />
+
+        <TextView
+            android:id="@+id/tv_card_no"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_35"
+            android:background="@drawable/corners_3_solid_f8f9fb_stroke_1_c5c8cb"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingStart="@dimen/dp_11"
+            android:paddingEnd="@dimen/dp_11"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_11"
+            app:layout_constraintBottom_toBottomOf="@id/tv_card_no_hint"
+            app:layout_constraintLeft_toLeftOf="@id/tv_id_card"
+            app:layout_constraintRight_toRightOf="@id/tv_id_card"
+            app:layout_constraintTop_toTopOf="@id/tv_card_no_hint" />
+
+        <TextView
+            android:id="@+id/tv_balance_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_40"
+            android:text="余额："
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintRight_toRightOf="@id/tv_id_card_hint"
+            app:layout_constraintTop_toBottomOf="@id/tv_card_no_hint" />
+
+        <TextView
+            android:id="@+id/tv_balance"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_35"
+            android:background="@drawable/corners_3_solid_f8f9fb_stroke_1_c5c8cb"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingStart="@dimen/dp_11"
+            android:paddingEnd="@dimen/dp_11"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_11"
+            app:layout_constraintBottom_toBottomOf="@id/tv_balance_hint"
+            app:layout_constraintLeft_toLeftOf="@id/tv_id_card"
+            app:layout_constraintRight_toRightOf="@id/tv_id_card"
+            app:layout_constraintTop_toTopOf="@id/tv_balance_hint" />
+
+        <TextView
+            android:id="@+id/tv_payment_amount_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_40"
+            android:text="实付金额："
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintRight_toRightOf="@id/tv_id_card_hint"
+            app:layout_constraintTop_toBottomOf="@id/tv_balance_hint" />
+
+        <EditText
+            android:id="@+id/et_payment_amount"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_35"
+            android:background="@drawable/corners_3_stroke_1_c5c8cb"
+            android:gravity="center_vertical"
+            android:hint="请输入实付金额"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:paddingStart="@dimen/dp_11"
+            android:paddingEnd="@dimen/dp_11"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_999999"
+            android:textSize="@dimen/font_11"
+            app:layout_constraintBottom_toBottomOf="@id/tv_payment_amount_hint"
+            app:layout_constraintLeft_toLeftOf="@id/tv_id_card"
+            app:layout_constraintRight_toRightOf="@id/tv_id_card"
+            app:layout_constraintTop_toTopOf="@id/tv_payment_amount_hint" />
+
+        <TextView
+            android:id="@+id/tv_recharge_amount_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="充值金额："
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintBottom_toBottomOf="@id/tv_payment_amount_hint"
+            app:layout_constraintRight_toRightOf="@id/tv_mobile_hint"
+            app:layout_constraintTop_toTopOf="@id/tv_payment_amount_hint" />
+
+        <EditText
+            android:id="@+id/et_recharge_amount"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_35"
+            android:background="@drawable/corners_3_stroke_1_c5c8cb"
+            android:gravity="center_vertical"
+            android:hint="请输入充值金额"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:paddingStart="@dimen/dp_11"
+            android:paddingEnd="@dimen/dp_11"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_999999"
+            android:textSize="@dimen/font_11"
+            app:layout_constraintBottom_toBottomOf="@id/tv_payment_amount_hint"
+            app:layout_constraintLeft_toLeftOf="@id/tv_mobile"
+            app:layout_constraintRight_toRightOf="@id/tv_mobile"
+            app:layout_constraintTop_toTopOf="@id/tv_payment_amount_hint" />
+
+        <TextView
+            android:id="@+id/tv_payment_method_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_40"
+            android:text="支付方式："
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_12"
+            app:layout_constraintRight_toRightOf="@id/tv_id_card_hint"
+            app:layout_constraintTop_toBottomOf="@id/tv_payment_amount_hint" />
+
+        <RadioGroup
+            android:id="@+id/rg_payment_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/tv_payment_method_hint"
+            app:layout_constraintLeft_toLeftOf="@id/tv_id_card"
+            app:layout_constraintTop_toTopOf="@id/tv_payment_method_hint">
+
+            <RadioButton
+                android:id="@+id/rb_online"
+                android:layout_width="@dimen/dp_85"
+                android:layout_height="@dimen/dp_26"
+                android:background="@drawable/sel_payment_method_bg"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="线上支付"
+                android:textColor="@drawable/sel_payment_method_txt"
+                android:textSize="@dimen/font_13"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/rb_offline"
+                android:layout_width="@dimen/dp_85"
+                android:layout_height="@dimen/dp_26"
+                android:layout_marginStart="@dimen/dp_27"
+                android:background="@drawable/sel_payment_method_bg"
+                android:button="@null"
+                android:gravity="center"
+                android:text="线下支付"
+                android:textColor="@drawable/sel_payment_method_txt"
+                android:textSize="@dimen/font_13"
+                android:textStyle="bold" />
+        </RadioGroup>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            android:layout_marginBottom="@dimen/dp_11"
+            android:background="@color/color_e6e6e6"
+            app:layout_constraintBottom_toTopOf="@id/tv_recharge"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_recharge"
+            android:layout_width="@dimen/dp_68"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginStart="@dimen/dp_18"
+            android:layout_marginBottom="@dimen/dp_11"
+            android:background="@drawable/corners_3_solid_ec7220"
+            android:gravity="center"
+            android:text="充值"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_13"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/ll_paying"
+        layout="@layout/pay_paying"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/ll_pay_fail"
+        layout="@layout/pay_fail"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/ll_pay_success"
+        layout="@layout/pay_success"
+        android:visibility="gone" />
+</LinearLayout>

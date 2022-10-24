@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_error"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="@dimen/dp_218"
+        android:layout_height="@dimen/dp_136"
+        android:src="@drawable/icon_error" />
+
+    <TextView
+        android:id="@+id/tv_error_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_13"
+        android:layout_marginEnd="@dimen/dp_13"
+        android:lineSpacingExtra="@dimen/dp_5"
+        android:text="加载失败,点击重试"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_19"
+        android:textStyle="bold" />
+</LinearLayout>

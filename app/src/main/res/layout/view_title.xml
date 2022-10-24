@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tb_title"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_44"
+    android:paddingStart="0dp"
+    android:paddingEnd="0dp"
+    app:contentInsetEnd="0dp"
+    app:contentInsetStart="0dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.ecare.smartmeal.widget.DrawableTextView
+            android:id="@+id/dtv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/icon_back"
+            android:drawablePadding="@dimen/dp_6"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/dp_13"
+            android:paddingEnd="@dimen/dp_13"
+            android:text="返回"
+            android:textColor="@color/color_ec7220"
+            android:textSize="@dimen/font_15"
+            android:textStyle="bold"
+            app:drawableLeftHeight="@dimen/dp_13"
+            app:drawableLeftWidth="@dimen/dp_7" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_15"
+            android:textStyle="bold"
+            tools:text="标题" />
+
+        <TextView
+            android:id="@+id/tv_title_operate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/dp_13"
+            android:paddingEnd="@dimen/dp_13"
+            android:textColor="@color/color_ec7220"
+            android:textSize="@dimen/font_15"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            tools:text="操作" />
+    </FrameLayout>
+</androidx.appcompat.widget.Toolbar>
