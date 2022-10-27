@@ -14,8 +14,8 @@ public class Constants {
 
     //========== Api ==========
 
-    public static final String API_BASE_URL = BuildConfig.DEBUG ? "http://172.16.20.114:60015/" : "http://172.16.20.114:60015/";
-    public static final String API_PAY_BASE_URL = BuildConfig.DEBUG ? "http://ecare.tpddns.cn:9200/ecare-boot/" : "http://ecare.tpddns.cn:9200/ecare-boot/";
+    public static final String API_BASE_URL = BuildConfig.DEBUG ? "http://www.ecare.ltd:4280/cloud-war/" : "http://www.ecare.ltd:4280/cloud-war/";
+    public static final String API_PAY_BASE_URL = BuildConfig.DEBUG ? "https://xhky.hzxh.gov.cn/ecare-alipay/" : "https://xhky.hzxh.gov.cn/ecare-alipay/";
     public static final int API_SUCCESS = 0;
 
     //========== Paging ==========
