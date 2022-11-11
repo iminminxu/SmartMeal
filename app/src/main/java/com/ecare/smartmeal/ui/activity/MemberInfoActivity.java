@@ -231,4 +231,8 @@ public class MemberInfoActivity extends RootActivity<MemberInfoContract.Presente
     public String getCardNo() {
         return mData == null ? mCardNo : mData.getCardNo();
     }
+
+    public CustomerListResponse getData() {
+        return mData;
+    }
 }

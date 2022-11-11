@@ -17,8 +17,8 @@ android {
         applicationId "com.ecare.smartmeal"
         minSdk 21
         targetSdk 31
-        versionCode 17
-        versionName "1.1.17"
+        versionCode 18
+        versionName "1.1.18"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -91,4 +91,6 @@ dependencies {
     implementation files('libs/print.aar')
     //PickerView
     implementation 'com.contrarywind:Android-PickerView:4.1.9'
+    //BubbleLayout
+    implementation 'com.github.MasayukiSuda:BubbleLayout:v1.2.2'
 }

@@ -14,6 +14,7 @@ public class CustomerBalanceRecordx {
     private BigDecimal money;
     private BigDecimal amount;
     private int isRefund;
+    private BigDecimal balance;
 
     public String getCreateTime() {
         return createTime;
@@ -45,5 +46,13 @@ public class CustomerBalanceRecordx {
 
     public void setIsRefund(int isRefund) {
         this.isRefund = isRefund;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 }

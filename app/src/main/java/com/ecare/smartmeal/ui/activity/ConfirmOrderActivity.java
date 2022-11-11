@@ -37,6 +37,7 @@ import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.daasuu.bl.BubbleLayout;
 import com.ecare.smartmeal.R;
 import com.ecare.smartmeal.base.RootActivity;
 import com.ecare.smartmeal.config.App;
@@ -126,6 +127,19 @@ public class ConfirmOrderActivity extends RootActivity<ConfirmOrderContract.Pres
     EditText etTotalPaidIn;
     @BindView(R.id.rg_payment_method)
     RadioGroup rgPaymentMethod;
+    //线下支付
+    @BindView(R.id.bl_offline)
+    BubbleLayout blOffline;
+    @BindView(R.id.tv_offline_cash)
+    TextView tvOfflineCash;
+    @BindView(R.id.tv_offline_alipay)
+    TextView tvOfflineAlipay;
+    @BindView(R.id.tv_offline_wechat)
+    TextView tvOfflineWechat;
+    @BindView(R.id.tv_offline_citizen_card)
+    TextView tvOfflineCitizenCard;
+    @BindView(R.id.tv_offline_other)
+    TextView tvOfflineOther;
     //支付结果页面
     @BindView(R.id.ll_paying)
     LinearLayout llPaying;
@@ -146,7 +160,11 @@ public class ConfirmOrderActivity extends RootActivity<ConfirmOrderContract.Pres
     //支付方式
     public static final int PAYMENT_METHOD_BALANCE = 1;
     public static final int PAYMENT_METHOD_FACE = 3;
-    public static final int PAYMENT_METHOD_OFFLINE = 5;
+    public static final int PAYMENT_METHOD_CASH = 5;
+    public static final int PAYMENT_METHOD_ALIPAY = 6;
+    public static final int PAYMENT_METHOD_WECHAT = 7;
+    public static final int PAYMENT_METHOD_CITIZEN_CARD = 8;
+    public static final int PAYMENT_METHOD_OTHER = 9;
     private int mPaymentMethod;
     //已选菜品列表
     private ArrayList<CommodityxAllResponseItem> mSelectedDishes;
@@ -246,6 +264,15 @@ public class ConfirmOrderActivity extends RootActivity<ConfirmOrderContract.Pres
                 FacePayUtils.showOrHideSKU(mSelectedDishes, mPreOrderInfo.getTicketDiscountMoney(), mPreOrderInfo.getTotalFee(), new BigDecimal(actualAmount), null);
             }
         });
+        //设置线下支付
+        rgPaymentMethod.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                blOffline.setVisibility(checkedId == R.id.rb_offline ? View.VISIBLE : View.GONE);
+            }
+        });
+        blOffline.setVisibility(View.GONE);
+        tvOfflineCash.setSelected(true);
     }
 
     /**
@@ -365,7 +392,7 @@ public class ConfirmOrderActivity extends RootActivity<ConfirmOrderContract.Pres
         tvPack.setSelected(eatWay == 2);
     }
 
-    @OnClick({R.id.dtv_back, R.id.tv_dine, R.id.tv_pack, R.id.tv_get_identity, R.id.tv_mobile_identify, R.id.tv_id_card_input, R.id.tv_pay, R.id.tv_pay_again, R.id.tv_back})
+    @OnClick({R.id.dtv_back, R.id.tv_dine, R.id.tv_pack, R.id.tv_get_identity, R.id.tv_mobile_identify, R.id.tv_id_card_input, R.id.tv_offline_cash, R.id.tv_offline_alipay, R.id.tv_offline_wechat, R.id.tv_offline_citizen_card, R.id.tv_offline_other, R.id.tv_pay, R.id.tv_pay_again, R.id.tv_back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.dtv_back:
@@ -412,6 +439,13 @@ public class ConfirmOrderActivity extends RootActivity<ConfirmOrderContract.Pres
                                     }
                                 }).show();
                 break;
+            case R.id.tv_offline_cash:
+            case R.id.tv_offline_alipay:
+            case R.id.tv_offline_wechat:
+            case R.id.tv_offline_citizen_card:
+            case R.id.tv_offline_other:
+                toggleOffline(view);
+                break;
             case R.id.tv_pay:
                 if (mPreOrderInfo == null) {
                     break;
@@ -425,10 +459,24 @@ public class ConfirmOrderActivity extends RootActivity<ConfirmOrderContract.Pres
                     showMsg("实收总额输入有误");
                     break;
                 }
-                if (NumUtils.parseDouble(totalStr) > 0 && rgPaymentMethod.getCheckedRadioButtonId() == R.id.rb_online) {
-                    mPaymentMethod = mElderInfo == null || mElderInfo.getCustomerId() == 0 ? PAYMENT_METHOD_FACE : PAYMENT_METHOD_BALANCE;
+                if (NumUtils.parseDouble(totalStr) > 0) {
+                    if (rgPaymentMethod.getCheckedRadioButtonId() == R.id.rb_online) {
+                        mPaymentMethod = mElderInfo == null || mElderInfo.getCustomerId() == 0 ? PAYMENT_METHOD_FACE : PAYMENT_METHOD_BALANCE;
+                    } else {
+                        if (tvOfflineCash.isSelected()) {
+                            mPaymentMethod = PAYMENT_METHOD_CASH;
+                        } else if (tvOfflineAlipay.isSelected()) {
+                            mPaymentMethod = PAYMENT_METHOD_ALIPAY;
+                        } else if (tvOfflineWechat.isSelected()) {
+                            mPaymentMethod = PAYMENT_METHOD_WECHAT;
+                        } else if (tvOfflineCitizenCard.isSelected()) {
+                            mPaymentMethod = PAYMENT_METHOD_CITIZEN_CARD;
+                        } else if (tvOfflineOther.isSelected()) {
+                            mPaymentMethod = PAYMENT_METHOD_OTHER;
+                        }
+                    }
                 } else {
-                    mPaymentMethod = PAYMENT_METHOD_OFFLINE;
+                    mPaymentMethod = PAYMENT_METHOD_CASH;
                 }
                 if (StringUtils.isEmpty(mTaboos)) {
                     mPresenter.createOrder(new BigDecimal(String.valueOf(NumUtils.parseDouble(totalStr))), mPreOrderInfo.getCouponsId(), mEatWay, mElderInfo == null ? "" : mElderInfo.getIdCard(), mSelectedDishes, mPreOrderInfo.getTicketDiscountMoney());
@@ -518,6 +566,14 @@ public class ConfirmOrderActivity extends RootActivity<ConfirmOrderContract.Pres
                 });
             }
         });
+    }
+
+    private void toggleOffline(View view) {
+        tvOfflineCash.setSelected(view == tvOfflineCash);
+        tvOfflineAlipay.setSelected(view == tvOfflineAlipay);
+        tvOfflineWechat.setSelected(view == tvOfflineWechat);
+        tvOfflineCitizenCard.setSelected(view == tvOfflineCitizenCard);
+        tvOfflineOther.setSelected(view == tvOfflineOther);
     }
 
     @Override

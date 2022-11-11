@@ -246,6 +246,55 @@ public class PrintUtils {
         SunmiPrinterApi.getInstance().lineWrap(5);
     }
 
+    public static void printMemberRechargeOrder(CustomerListResponse memberInfo, BigDecimal rechargeAmount, BigDecimal paymentAmount, BigDecimal balance, String createTime) throws PrinterException {
+        if (memberInfo == null) {
+            ToastUtils.showShort("会员信息加载失败，无法打印小票！");
+            return;
+        }
+        int[] width = new int[]{11, 10, 11};
+        int[] align = new int[]{0, 1, 2};
+        SunmiPrinterApi.getInstance().printerInit();
+        SunmiPrinterApi.getInstance().setAlignMode(1);
+        SunmiPrinterApi.getInstance().setFontZoom(2, 2);
+        SunmiPrinterApi.getInstance().printText("收银台");
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().setFontZoom(1, 1);
+        SunmiPrinterApi.getInstance().printText(App.getInstance().getMerchantInfo() == null ? "" : App.getInstance().getMerchantInfo().getMerchantName());
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("会员卡充值");
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("--------------------------------");
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().setAlignMode(0);
+        SunmiPrinterApi.getInstance().printText("充值时间：" + createTime);
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("--------------------------------");
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("卡号:" + memberInfo.getCardNo());
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("姓名:" + memberInfo.getName());
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("联系电话:" + MainActivity.desensitizedPhoneNumber(memberInfo.getMobile()));
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("原有金额:" + NumUtils.parsePrintAmount(balance.subtract(rechargeAmount)));
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("充值金额:" + NumUtils.parsePrintAmount(rechargeAmount));
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("实付金额:" + NumUtils.parsePrintAmount(paymentAmount));
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("--------------------------------");
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().setFontZoom(1, 2);
+        SunmiPrinterApi.getInstance().printText("应付                    " + NumUtils.parsePrintAmount(paymentAmount) + "元");
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().setFontZoom(1, 1);
+        SunmiPrinterApi.getInstance().printText("--------------------------------");
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("会员余额:" + NumUtils.parsePrintAmount(balance) + "元");
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().lineWrap(5);
+    }
+
     public static void printDailyOrderStatistics(OrderCountResponse orderCountResponse) throws PrinterException {
         if (orderCountResponse == null) {
             ToastUtils.showShort("日订单统计数据加载失败，无法打印小票！");
