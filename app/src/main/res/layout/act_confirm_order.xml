@@ -365,7 +365,7 @@
                 app:bl_arrowPosition="@dimen/dp_142"
                 app:bl_arrowWidth="@dimen/dp_15"
                 app:bl_cornersRadius="@dimen/dp_10"
-                app:bl_strokeColor="@color/color_f0f1f2"
+                app:bl_strokeColor="@color/color_c5c8cb"
                 app:bl_strokeWidth="@dimen/dp_1">
 
                 <LinearLayout
