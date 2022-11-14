@@ -58,6 +58,7 @@ import com.ecare.smartmeal.presenter.ConfirmOrderPresenter;
 import com.ecare.smartmeal.utils.NumUtils;
 import com.ecare.smartmeal.utils.PrintUtils;
 import com.ecare.smartmeal.utils.TextSpanBuilder;
+import com.ecare.smartmeal.widget.DiscountPopup;
 import com.ecare.smartmeal.widget.HorizontalDividerItemDecoration;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BasePopupView;
@@ -392,7 +393,7 @@ public class ConfirmOrderActivity extends RootActivity<ConfirmOrderContract.Pres
         tvPack.setSelected(eatWay == 2);
     }
 
-    @OnClick({R.id.dtv_back, R.id.tv_dine, R.id.tv_pack, R.id.tv_get_identity, R.id.tv_mobile_identify, R.id.tv_id_card_input, R.id.tv_offline_cash, R.id.tv_offline_alipay, R.id.tv_offline_wechat, R.id.tv_offline_citizen_card, R.id.tv_offline_other, R.id.tv_pay, R.id.tv_pay_again, R.id.tv_back})
+    @OnClick({R.id.dtv_back, R.id.tv_dine, R.id.tv_pack, R.id.tv_get_identity, R.id.tv_mobile_identify, R.id.tv_id_card_input, R.id.tv_discount, R.id.tv_offline_cash, R.id.tv_offline_alipay, R.id.tv_offline_wechat, R.id.tv_offline_citizen_card, R.id.tv_offline_other, R.id.tv_pay, R.id.tv_pay_again, R.id.tv_back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.dtv_back:
@@ -438,6 +439,22 @@ public class ConfirmOrderActivity extends RootActivity<ConfirmOrderContract.Pres
                                         mPresenter.getElderInfo(new ElderAuthRequest("", "", text, ""), "散客");
                                     }
                                 }).show();
+                break;
+            case R.id.tv_discount:
+                if (mPreOrderInfo == null) {
+                    break;
+                }
+                ((DiscountPopup) new XPopup.Builder(mContext)
+                        .isDestroyOnDismiss(true)
+                        .autoOpenSoftInput(true)
+                        .asCustom(new DiscountPopup(mContext)))
+                        .setOnDiscountListener(new DiscountPopup.OnDiscountListener() {
+                            @Override
+                            public void onDiscount(BigDecimal discount) {
+                                etTotalPaidIn.setText(mPreOrderInfo.getTotalFee().multiply(discount).divide(new BigDecimal("10"), 2, BigDecimal.ROUND_HALF_UP).toString());
+                            }
+                        })
+                        .show();
                 break;
             case R.id.tv_offline_cash:
             case R.id.tv_offline_alipay:
