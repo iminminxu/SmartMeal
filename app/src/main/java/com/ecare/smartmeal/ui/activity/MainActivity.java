@@ -31,6 +31,7 @@ import com.ecare.smartmeal.facepay.FaceRecognitionUtils;
 import com.ecare.smartmeal.model.bean.rsp.MerchantInfoResponse;
 import com.ecare.smartmeal.presenter.MainPresenter;
 import com.ecare.smartmeal.ui.fragment.HomeCashierFragment;
+import com.ecare.smartmeal.ui.fragment.HomeComboFragment;
 import com.ecare.smartmeal.ui.fragment.HomePendingFragment;
 import com.ecare.smartmeal.ui.fragment.HomeRechargeFragment;
 import com.ecare.smartmeal.widget.LogoutPopup;
@@ -66,6 +67,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     public static final String TAG_CASHIER = "cashier";
     public static final String TAG_PENDING = "pending";
     public static final String TAG_RECHARGE = "recharge";
+    public static final String TAG_COMBO = "combo";
     //控件
     @BindView(R.id.tv_mobile)
     TextView tvMobile;
@@ -75,6 +77,8 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     LinearLayout llPending;
     @BindView(R.id.ll_recharge)
     LinearLayout llRecharge;
+    @BindView(R.id.ll_combo)
+    LinearLayout llCombo;
     //当前Fragment
     private Fragment mCurrentFragment;
     //定时24小时获取authToken
@@ -102,7 +106,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         tvMobile.setText(desensitizedPhoneNumber(SPUtils.getInstance(Constants.SP_USER).getString(Constants.SP_MOBILE)));
         switchFragment(TAG_CASHIER);
         //初始化IoT
-        initIoT();
+        //initIoT();
         //连接打印机
         connectPrinter();
     }
@@ -154,6 +158,8 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
                 return new HomePendingFragment();
             case TAG_RECHARGE:
                 return new HomeRechargeFragment();
+            case TAG_COMBO:
+                return new HomeComboFragment();
             default:
                 return new HomeCashierFragment();
         }
@@ -230,7 +236,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
                 });
     }
 
-    @OnClick({R.id.iv_avatar, R.id.tv_statistical_statement, R.id.ll_cashier, R.id.ll_pending, R.id.ll_recharge})
+    @OnClick({R.id.iv_avatar, R.id.tv_statistical_statement, R.id.ll_cashier, R.id.ll_pending, R.id.ll_recharge, R.id.ll_combo})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_avatar:
@@ -257,6 +263,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
                 llCashier.setBackgroundColor(getResources().getColor(R.color.color_ec7220));
                 llPending.setBackgroundColor(Color.TRANSPARENT);
                 llRecharge.setBackgroundColor(Color.TRANSPARENT);
+                llCombo.setBackgroundColor(Color.TRANSPARENT);
                 switchFragment(TAG_CASHIER);
                 break;
             case R.id.ll_pending:
@@ -266,6 +273,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
                 llCashier.setBackgroundColor(Color.TRANSPARENT);
                 llPending.setBackgroundColor(getResources().getColor(R.color.color_ec7220));
                 llRecharge.setBackgroundColor(Color.TRANSPARENT);
+                llCombo.setBackgroundColor(Color.TRANSPARENT);
                 switchFragment(TAG_PENDING);
                 break;
             case R.id.ll_recharge:
@@ -275,7 +283,18 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
                 llCashier.setBackgroundColor(Color.TRANSPARENT);
                 llPending.setBackgroundColor(Color.TRANSPARENT);
                 llRecharge.setBackgroundColor(getResources().getColor(R.color.color_ec7220));
+                llCombo.setBackgroundColor(Color.TRANSPARENT);
                 switchFragment(TAG_RECHARGE);
+                break;
+            case R.id.ll_combo:
+                if (mCurrentFragment instanceof HomeComboFragment) {
+                    break;
+                }
+                llCashier.setBackgroundColor(Color.TRANSPARENT);
+                llPending.setBackgroundColor(Color.TRANSPARENT);
+                llRecharge.setBackgroundColor(Color.TRANSPARENT);
+                llCombo.setBackgroundColor(getResources().getColor(R.color.color_ec7220));
+                switchFragment(TAG_COMBO);
                 break;
             default:
                 break;

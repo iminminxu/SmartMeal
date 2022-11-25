@@ -52,7 +52,7 @@
         <LinearLayout
             android:id="@+id/ll_cashier"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_92"
+            android:layout_height="@dimen/dp_85"
             android:background="@color/color_ec7220"
             android:gravity="center"
             android:orientation="vertical">
@@ -79,7 +79,7 @@
         <LinearLayout
             android:id="@+id/ll_pending"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_92"
+            android:layout_height="@dimen/dp_85"
             android:background="@color/color_00000000"
             android:gravity="center"
             android:orientation="vertical">
@@ -106,7 +106,7 @@
         <LinearLayout
             android:id="@+id/ll_recharge"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_92"
+            android:layout_height="@dimen/dp_85"
             android:background="@color/color_00000000"
             android:gravity="center"
             android:orientation="vertical">
@@ -121,6 +121,33 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_8"
                 android:text="充值"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_13" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/color_010101" />
+
+        <LinearLayout
+            android:id="@+id/ll_combo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_85"
+            android:background="@color/color_00000000"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dp_22"
+                android:layout_height="@dimen/dp_22"
+                android:src="@drawable/icon_home_combo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="套餐执行"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_13" />
         </LinearLayout>
