@@ -1,6 +1,8 @@
 package com.ecare.smartmeal.ui.activity;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -34,7 +36,6 @@ import com.alipay.zoloz.smile2pay.verify.Smile2PayResponse;
 import com.alipay.zoloz.smile2pay.verify.VerifyCallback;
 import com.blankj.utilcode.util.RegexUtils;
 import com.blankj.utilcode.util.StringUtils;
-import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.daasuu.bl.BubbleLayout;
@@ -47,12 +48,14 @@ import com.ecare.smartmeal.facepay.FacePayUtils;
 import com.ecare.smartmeal.facepay.FaceRecognitionUtils;
 import com.ecare.smartmeal.model.bean.req.CommodityOrderRequest;
 import com.ecare.smartmeal.model.bean.req.ElderAuthRequest;
+import com.ecare.smartmeal.model.bean.req.UnionPayReqDTO;
 import com.ecare.smartmeal.model.bean.rsp.CommodityItem;
 import com.ecare.smartmeal.model.bean.rsp.CommodityOrderPayResponse;
 import com.ecare.smartmeal.model.bean.rsp.CommodityxAllResponseItem;
 import com.ecare.smartmeal.model.bean.rsp.ElderCodeResponse;
 import com.ecare.smartmeal.model.bean.rsp.MerchantInfoResponse;
 import com.ecare.smartmeal.model.bean.rsp.OrderInfoResponse;
+import com.ecare.smartmeal.model.bean.rsp.UnionPayRspDTO;
 import com.ecare.smartmeal.model.rxjava.CommonSubscriber;
 import com.ecare.smartmeal.presenter.ConfirmOrderPresenter;
 import com.ecare.smartmeal.utils.NumUtils;
@@ -60,6 +63,8 @@ import com.ecare.smartmeal.utils.PrintUtils;
 import com.ecare.smartmeal.utils.TextSpanBuilder;
 import com.ecare.smartmeal.widget.DiscountPopup;
 import com.ecare.smartmeal.widget.HorizontalDividerItemDecoration;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BasePopupView;
 import com.lxj.xpopup.impl.LoadingPopupView;
@@ -166,6 +171,7 @@ public class ConfirmOrderActivity extends RootActivity<ConfirmOrderContract.Pres
     public static final int PAYMENT_METHOD_WECHAT = 7;
     public static final int PAYMENT_METHOD_CITIZEN_CARD = 8;
     public static final int PAYMENT_METHOD_OTHER = 9;
+    public static final int PAYMENT_METHOD_UNION_PAY = 10;
     private int mPaymentMethod;
     //已选菜品列表
     private ArrayList<CommodityxAllResponseItem> mSelectedDishes;
@@ -406,7 +412,14 @@ public class ConfirmOrderActivity extends RootActivity<ConfirmOrderContract.Pres
                 mPresenter.getOrderInfo(0, mEatWay, mElderInfo == null ? "" : mElderInfo.getIdCard(), mSelectedDishes);
                 break;
             case R.id.tv_get_identity:
-                speedyVerify();
+                //speedyVerify();
+                showMsg("请在POS机上刷爱心卡");
+                Intent intent = new Intent();
+                intent.setComponent(new ComponentName("com.ums.zj.mispay", "com.ums.zj.mispay.activity.CardPayActivity"));
+                intent.setData(Uri.parse("com.ums.zj.mispay.activity"));
+                //请将请求数据放在键名为psaContent的键值中传给本层APP
+                intent.putExtra("psaContent", "{\"psaType\":\"32\"}");
+                startActivityForResult(intent, Constants.REQ_UNION_PAY_RECOGNITION);
                 break;
             case R.id.tv_mobile_identify:
                 new XPopup.Builder(mContext)
@@ -479,6 +492,8 @@ public class ConfirmOrderActivity extends RootActivity<ConfirmOrderContract.Pres
                 if (NumUtils.parseDouble(totalStr) > 0) {
                     if (rgPaymentMethod.getCheckedRadioButtonId() == R.id.rb_online) {
                         mPaymentMethod = mElderInfo == null || mElderInfo.getCustomerId() == 0 ? PAYMENT_METHOD_FACE : PAYMENT_METHOD_BALANCE;
+                    } else if (rgPaymentMethod.getCheckedRadioButtonId() == R.id.rb_union_pay) {
+                        mPaymentMethod = PAYMENT_METHOD_UNION_PAY;
                     } else {
                         if (tvOfflineCash.isSelected()) {
                             mPaymentMethod = PAYMENT_METHOD_CASH;
@@ -624,7 +639,7 @@ public class ConfirmOrderActivity extends RootActivity<ConfirmOrderContract.Pres
         if (data == null) {
             return;
         }
-        ToastUtils.showLong("长者码身份认证成功！");
+        //ToastUtils.showLong("长者码身份认证成功！");
         mElderInfo = data;
         tvGetIdentity.setVisibility(View.GONE);
         tvMobileIdentify.setVisibility(View.GONE);
@@ -731,6 +746,13 @@ public class ConfirmOrderActivity extends RootActivity<ConfirmOrderContract.Pres
                     }
                 }
             });
+        } else if (mPaymentMethod == PAYMENT_METHOD_UNION_PAY) {
+            Intent intent = new Intent();
+            intent.setComponent(new ComponentName("com.ums.zj.mispay", "com.ums.zj.mispay.activity.CardPayActivity"));
+            intent.setData(Uri.parse("com.ums.zj.mispay.activity"));
+            //请将请求数据放在键名为psaContent的键值中传给本层APP
+            intent.putExtra("psaContent", new Gson().toJson(new UnionPayReqDTO(String.valueOf(NumUtils.parseDouble(etTotalPaidIn.getText().toString())), "01")));
+            startActivityForResult(intent, Constants.REQ_UNION_PAY_CONSUMPTION);
         } else {
             mPresenter.payOrder(mElderInfo == null ? 0 : mElderInfo.getCustomerId(), mOrderId, mPaymentMethod, mElderInfo == null ? "" : mElderInfo.getCardNo());
         }
@@ -877,5 +899,45 @@ public class ConfirmOrderActivity extends RootActivity<ConfirmOrderContract.Pres
             }
         }
         return aChar;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.REQ_UNION_PAY_RECOGNITION) {
+            if (data == null || data.getExtras() == null
+                    || data.getExtras().getString("psaResult") == null) {
+                showMsg("爱心卡识别失败");
+                return;
+            }
+            try {
+                UnionPayRspDTO psaResult = new Gson().fromJson(data.getExtras().getString("psaResult"), UnionPayRspDTO.class);
+                if (!StringUtils.equals("00", psaResult.getCode())) {
+                    showMsg("爱心卡识别失败");
+                    return;
+                }
+                mPresenter.getElderInfo(new ElderAuthRequest(psaResult.getCardNumber(), "", "", ""), "");
+            } catch (JsonSyntaxException e) {
+                e.printStackTrace();
+                showMsg("爱心卡识别失败");
+            }
+        } else if (requestCode == Constants.REQ_UNION_PAY_CONSUMPTION) {
+            if (data == null || data.getExtras() == null
+                    || data.getExtras().getString("psaResult") == null) {
+                togglePayStatus(PAY_FAIL);
+                return;
+            }
+            try {
+                UnionPayRspDTO psaResult = new Gson().fromJson(data.getExtras().getString("psaResult"), UnionPayRspDTO.class);
+                if (!StringUtils.equals("00", psaResult.getCode())) {
+                    togglePayStatus(PAY_FAIL);
+                    return;
+                }
+                mPresenter.payOrder(mElderInfo == null ? 0 : mElderInfo.getCustomerId(), mOrderId, mPaymentMethod, mElderInfo == null ? "" : mElderInfo.getCardNo());
+            } catch (JsonSyntaxException e) {
+                e.printStackTrace();
+                togglePayStatus(PAY_FAIL);
+            }
+        }
     }
 }

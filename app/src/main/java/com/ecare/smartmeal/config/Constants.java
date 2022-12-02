@@ -52,6 +52,8 @@ public class Constants {
     public static final int REQ_CONFIRM_ORDER = 1001;
     public static final int REQ_MEMBER_INFO = 1002;
     public static final int REQ_MEMBER_RECHARGE = 1003;
+    public static final int REQ_UNION_PAY_RECOGNITION = 1004;
+    public static final int REQ_UNION_PAY_CONSUMPTION = 1005;
 
     //========== Key ==========
 

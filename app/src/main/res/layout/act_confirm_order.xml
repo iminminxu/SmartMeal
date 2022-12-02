@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_13"
                 android:layout_marginTop="@dimen/dp_23"
-                android:text="取餐方式"
+                android:text="取货方式"
                 android:textColor="@color/color_333333"
                 android:textSize="@dimen/font_14"
                 android:textStyle="bold" />
@@ -62,7 +62,7 @@
                     android:drawablePadding="@dimen/dp_7"
                     android:gravity="center_vertical"
                     android:padding="@dimen/dp_13"
-                    android:text="堂食"
+                    android:text="自提"
                     android:textColor="@color/color_333333"
                     android:textSize="@dimen/font_14" />
 
@@ -98,7 +98,7 @@
                     android:layout_marginStart="@dimen/dp_13"
                     android:background="@drawable/corners_3_solid_ec7220"
                     android:gravity="center"
-                    android:text="人脸识别"
+                    android:text="爱心卡识别"
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_13"
                     android:textStyle="bold" />
@@ -113,7 +113,8 @@
                     android:text="手机号识别"
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_13"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_id_card_input"
@@ -125,7 +126,8 @@
                     android:text="身份证输入"
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_13"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <TextView
@@ -134,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_13"
                 android:layout_marginTop="@dimen/dp_13"
-                android:text="注：请直接刷长者码或点击人脸识别进行身份认证"
+                android:text="注：请直接刷长者码进行身份认证"
                 android:textColor="@color/color_f71413"
                 android:textSize="@dimen/font_13"
                 android:textStyle="bold" />
@@ -339,10 +341,24 @@
                     android:textStyle="bold" />
 
                 <RadioButton
+                    android:id="@+id/rb_union_pay"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_26"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/sel_payment_method_bg"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="爱心卡支付"
+                    android:textColor="@drawable/sel_payment_method_txt"
+                    android:textSize="@dimen/font_13"
+                    android:textStyle="bold" />
+
+                <RadioButton
                     android:id="@+id/rb_offline"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dp_26"
-                    android:layout_marginStart="@dimen/dp_27"
+                    android:layout_marginStart="@dimen/dp_10"
                     android:layout_weight="1"
                     android:background="@drawable/sel_payment_method_bg"
                     android:button="@null"
@@ -362,7 +378,7 @@
                 android:layout_marginEnd="@dimen/dp_13"
                 app:bl_arrowDirection="top"
                 app:bl_arrowHeight="@dimen/dp_8"
-                app:bl_arrowPosition="@dimen/dp_142"
+                app:bl_arrowPosition="@dimen/dp_155"
                 app:bl_arrowWidth="@dimen/dp_15"
                 app:bl_cornersRadius="@dimen/dp_10"
                 app:bl_strokeColor="@color/color_c5c8cb"

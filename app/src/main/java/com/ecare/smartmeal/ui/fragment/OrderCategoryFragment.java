@@ -67,13 +67,13 @@ public class OrderCategoryFragment extends SimpleFragment {
                 fragmentList.add(OrderListFragment.newInstance(orderWay, OrderListFragment.STATUS_PENDING_DELIVERY));
                 break;
             case OrderListFragment.ORDER_WAY_SHOP:
-                titles = new String[]{"新订单", "待配餐", "待取餐"};
+                titles = new String[]{"新订单", "待配货", "待取货"};
                 fragmentList.add(OrderListFragment.newInstance(orderWay, OrderListFragment.STATUS_PENDING_ORDER));
                 fragmentList.add(OrderListFragment.newInstance(orderWay, OrderListFragment.STATUS_TO_BE_SERVED));
                 fragmentList.add(OrderListFragment.newInstance(orderWay, OrderListFragment.STATUS_MEAL_WAITING));
                 break;
             case OrderListFragment.ORDER_WAY_BOOKING:
-                titles = new String[]{"新预定", "今日待配餐"};
+                titles = new String[]{"新预定", "今日待配货"};
                 fragmentList.add(OrderListFragment.newInstance(orderWay, OrderListFragment.STATUS_PENDING_ORDER));
                 fragmentList.add(OrderListFragment.newInstance(orderWay, OrderListFragment.STATUS_PENDING_DELIVERY));
                 break;

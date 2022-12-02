@@ -20,7 +20,7 @@
             android:background="@color/color_ec7220"
             android:gravity="center_vertical"
             android:paddingStart="@dimen/dp_16"
-            android:text="已选菜品"
+            android:text="已选商品"
             android:textColor="@color/white"
             android:textSize="@dimen/font_15"
             android:textStyle="bold" />
