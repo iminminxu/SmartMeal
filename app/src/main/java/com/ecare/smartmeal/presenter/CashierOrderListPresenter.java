@@ -26,8 +26,7 @@ import com.ecare.smartmeal.model.bean.rsp.PrintTicketResponse;
 import com.ecare.smartmeal.model.rxjava.CommonSubscriber;
 import com.ecare.smartmeal.model.rxjava.RxUtils;
 import com.ecare.smartmeal.ui.activity.MainActivity;
-import com.ecare.smartmeal.ui.fragment.CashierOrderListFragment;
-import com.ecare.smartmeal.ui.fragment.OrderListFragment;
+import com.ecare.smartmeal.ui.fragment.OrderListNewFragment;
 import com.ecare.smartmeal.utils.NumUtils;
 import com.ecare.smartmeal.utils.PrintUtils;
 import com.ecare.smartmeal.utils.TextSpanBuilder;
@@ -50,10 +49,12 @@ public class CashierOrderListPresenter extends PagingPresenter<CashierOrderListC
 
     //上下文
     private Context mContext;
-    //订单状态
+    //页面传递参数
+    private int mSource;
     private int mStatus;
 
-    public CashierOrderListPresenter(int status) {
+    public CashierOrderListPresenter(int source, int status) {
+        mSource = source;
         mStatus = status;
     }
 
@@ -72,7 +73,7 @@ public class CashierOrderListPresenter extends PagingPresenter<CashierOrderListC
                     return;
                 }
                 helper.setText(R.id.tv_order_title, "订单编号：" + item.getOrderno())
-                        .setText(R.id.tv_order_status, mStatus == CashierOrderListFragment.STATUS_COMPLETED ? "已完成" : "已退单")
+                        .setText(R.id.tv_order_status, mStatus == OrderListNewFragment.STATUS_COMPLETED ? "已完成" : "已退单")
                         .setText(R.id.tv_name, "创建时间：" + item.getCreatTime())
                         .setGone(R.id.tv_id_card, true)
                         .setGone(R.id.tv_mobile, true)
@@ -86,8 +87,8 @@ public class CashierOrderListPresenter extends PagingPresenter<CashierOrderListC
                         .setText(R.id.tv_income, TextSpanBuilder.create("本单收入：")
                                 .append(NumUtils.parseAmount(item.getAmount())).sizeInPx((int) mContext.getResources().getDimension(R.dimen.font_16)).foregroundColor(mContext.getResources().getColor(R.color.color_f71413))
                                 .build())
-                        .setGone(R.id.tv_print, mStatus == CashierOrderListFragment.STATUS_REFUNDED)
-                        .setGone(R.id.tv_operate, mStatus == CashierOrderListFragment.STATUS_REFUNDED || !StringUtils.equals(item.getPayType(), "1"))
+                        .setGone(R.id.tv_print, mStatus == OrderListNewFragment.STATUS_REFUNDED)
+                        .setGone(R.id.tv_operate, mStatus == OrderListNewFragment.STATUS_REFUNDED || !StringUtils.equals(item.getPayType(), "1"))
                         .setText(R.id.tv_operate, "发起退款");
                 RecyclerView rvCommodity = helper.getView(R.id.rv_commodity);
                 rvCommodity.setLayoutManager(new LinearLayoutManager(mContext));
@@ -131,7 +132,7 @@ public class CashierOrderListPresenter extends PagingPresenter<CashierOrderListC
                 }
                 switch (view.getId()) {
                     case R.id.tv_print:
-                        if (mStatus == CashierOrderListFragment.STATUS_REFUNDED) {
+                        if (mStatus == OrderListNewFragment.STATUS_REFUNDED) {
                             break;
                         }
                         new XPopup.Builder(mContext).asConfirm("提示", "确定补打小票？", "取消", "确认", new OnConfirmListener() {
@@ -142,7 +143,7 @@ public class CashierOrderListPresenter extends PagingPresenter<CashierOrderListC
                         }, null, false).show();
                         break;
                     case R.id.tv_operate:
-                        if (mStatus == CashierOrderListFragment.STATUS_REFUNDED || !StringUtils.equals(item.getPayType(), "1")) {
+                        if (mStatus == OrderListNewFragment.STATUS_REFUNDED || !StringUtils.equals(item.getPayType(), "1")) {
                             break;
                         }
                         new XPopup.Builder(mContext).asConfirm("提示", "确定发起退单？", "取消", "确认", new OnConfirmListener() {
@@ -163,7 +164,7 @@ public class CashierOrderListPresenter extends PagingPresenter<CashierOrderListC
     @Override
     protected void loadData(int showType, int pageIndex) {
         addSubscribe(ProjectApi.getInstance().getApiService()
-                .getCashierOrderList(new OrderListRequest(pageIndex, mPageSize, mStatus))
+                .getCashierOrderList(new OrderListRequest(pageIndex, mPageSize, mSource, mStatus))
                 .compose(RxUtils.<BaseResponse<List<OrderListResponse>>>rxSchedulerHelper())
                 .compose(RxUtils.<List<OrderListResponse>>handleResult())
                 .subscribeWith(new CommonSubscriber<List<OrderListResponse>>(mView, showType) {
@@ -238,7 +239,7 @@ public class CashierOrderListPresenter extends PagingPresenter<CashierOrderListC
                     public void onNext(String data) {
                         if (isAttachView()) {
                             mView.showMsg("退款成功");
-                            EventBus.getDefault().post(new Event.OrderListRefreshEvent(OrderListFragment.ORDER_WAY_CASHIER));
+                            EventBus.getDefault().post(new Event.OrderListNewRefreshEvent(mSource));
                         }
                     }
                 })

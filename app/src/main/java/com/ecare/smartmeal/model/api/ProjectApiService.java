@@ -4,6 +4,7 @@ import com.ecare.smartmeal.model.bean.BasePaging;
 import com.ecare.smartmeal.model.bean.BaseResponse;
 import com.ecare.smartmeal.model.bean.req.AccountRequest;
 import com.ecare.smartmeal.model.bean.req.AllOrderRequest;
+import com.ecare.smartmeal.model.bean.req.ChangeOrderStatusRequest;
 import com.ecare.smartmeal.model.bean.req.CommodityOrderPayRequest;
 import com.ecare.smartmeal.model.bean.req.CommodityOrderRequest;
 import com.ecare.smartmeal.model.bean.req.ConfirmDeliveryRequest;
@@ -131,4 +132,10 @@ public interface ProjectApiService {
 
     @POST("order/printTicket")
     Flowable<BaseResponse<PrintTicketResponse>> printTicket(@Body RefundOrderRequest refundOrderRequest);
+
+    @POST("order/changeOrderStatus")
+    Flowable<BaseResponse<String>> changeOrderStatus(@Body ChangeOrderStatusRequest changeOrderStatusRequest);
+
+    @POST("order/updateElderInfo")
+    Flowable<BaseResponse<String>> updateElderInfo(@Body CustomerRequest customerRequest);
 }

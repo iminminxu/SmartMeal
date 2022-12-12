@@ -18,6 +18,8 @@ public class OrderListResponse {
     private List<OrderDetailsDTO> orderDetails;
     private BigDecimal amount;
     private String payType;
+    private String idCard;
+    private String liveAddr;
 
     public String getOrderno() {
         return orderno;
@@ -75,10 +77,27 @@ public class OrderListResponse {
         this.payType = payType;
     }
 
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public String getLiveAddr() {
+        return liveAddr;
+    }
+
+    public void setLiveAddr(String liveAddr) {
+        this.liveAddr = liveAddr;
+    }
+
     public static class OrderDetailsDTO {
         private String name;
         private int number;
         private BigDecimal price;
+        private BigDecimal singlePrice;
         private List<ItemListDTO> itemList;
 
         public String getName() {
@@ -103,6 +122,14 @@ public class OrderListResponse {
 
         public void setPrice(BigDecimal price) {
             this.price = price;
+        }
+
+        public BigDecimal getSinglePrice() {
+            return singlePrice;
+        }
+
+        public void setSinglePrice(BigDecimal singlePrice) {
+            this.singlePrice = singlePrice;
         }
 
         public List<ItemListDTO> getItemList() {

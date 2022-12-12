@@ -130,13 +130,13 @@ public class ConfirmOrderPresenter extends RxPresenter<ConfirmOrderContract.View
     }
 
     @Override
-    public void createOrder(BigDecimal amount, Integer couponsId, int eatWay, String idCard, List<CommodityxAllResponseItem> list, BigDecimal ticketDiscountMoney) {
+    public void createOrder(BigDecimal amount, Integer couponsId, int eatWay, String idCard, List<CommodityxAllResponseItem> list, BigDecimal ticketDiscountMoney, String customerName) {
         if (!isAttachView()) {
             return;
         }
         mView.showLoadingDialog();
         addSubscribe(ProjectApi.getInstance().getApiService()
-                .createOrder(new CommodityOrderRequest(amount, couponsId, eatWay, idCard, list, ticketDiscountMoney))
+                .createOrder(new CommodityOrderRequest(amount, couponsId, eatWay, idCard, list, ticketDiscountMoney, customerName))
                 .compose(RxUtils.<BaseResponse<Integer>>rxSchedulerHelper())
                 .compose(RxUtils.<Integer>handleResult())
                 .subscribeWith(new CommonSubscriber<Integer>(mView, CommonSubscriber.SHOW_LOADING_DIALOG) {
