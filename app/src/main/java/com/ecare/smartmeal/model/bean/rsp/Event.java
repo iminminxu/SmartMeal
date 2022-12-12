@@ -25,6 +25,23 @@ public class Event {
         }
     }
 
+    public static class OrderListNewRefreshEvent {
+
+        private int source;
+
+        public OrderListNewRefreshEvent(int source) {
+            this.source = source;
+        }
+
+        public int getSource() {
+            return source;
+        }
+
+        public void setSource(int source) {
+            this.source = source;
+        }
+    }
+
     public static class ModifyCardNoEvent {
 
         private String cardNo;

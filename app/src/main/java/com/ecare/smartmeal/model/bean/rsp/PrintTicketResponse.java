@@ -19,6 +19,7 @@ public class PrintTicketResponse {
     private BigDecimal ticketDiscountMoney;
     private BigDecimal totalFee;
     private String createTime;
+    private String merchantName;
 
     public BigDecimal getAmount() {
         return amount;
@@ -90,5 +91,13 @@ public class PrintTicketResponse {
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    public String getMerchantName() {
+        return merchantName;
+    }
+
+    public void setMerchantName(String merchantName) {
+        this.merchantName = merchantName;
     }
 }

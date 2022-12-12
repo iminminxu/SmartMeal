@@ -542,5 +542,6 @@
     <dimen name="dp_499">499dp</dimen>
     <dimen name="dp_500">500dp</dimen>
     <dimen name="dp_584">584dp</dimen>
+    <dimen name="dp_687">687dp</dimen>
     <dimen name="dp_1112">1112dp</dimen>
 </resources>

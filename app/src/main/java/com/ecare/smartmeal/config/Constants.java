@@ -31,6 +31,8 @@ public class Constants {
     public static final String IT_SELECTED_DISHES = "selected_dishes";
     public static final String IT_ORDER_WAY = "order_way";
     public static final String IT_STATUS = "status";
+    public static final String IT_SOURCE = "source";
+    public static final String IT_IS_NEW = "is_new";
     public static final String IT_CUSTOMER_ID = "customer_id";
     public static final String IT_TITLE = "title";
     public static final String IT_URL = "url";

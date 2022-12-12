@@ -19,6 +19,7 @@ public class CommodityOrderRequest {
     private String idCard;
     private List<CommodityxAllResponseItem> list;
     private BigDecimal ticketDiscountMoney;
+    private String customerName;
 
     public CommodityOrderRequest(int eatWay, String idCard, List<CommodityxAllResponseItem> list) {
         this.eatWay = eatWay;
@@ -31,13 +32,14 @@ public class CommodityOrderRequest {
         this.list = list;
     }
 
-    public CommodityOrderRequest(BigDecimal amount, Integer couponsId, int eatWay, String idCard, List<CommodityxAllResponseItem> list, BigDecimal ticketDiscountMoney) {
+    public CommodityOrderRequest(BigDecimal amount, Integer couponsId, int eatWay, String idCard, List<CommodityxAllResponseItem> list, BigDecimal ticketDiscountMoney, String customerName) {
         this.amount = amount;
         this.couponsId = couponsId;
         this.eatWay = eatWay;
         this.idCard = idCard;
         this.list = list;
         this.ticketDiscountMoney = ticketDiscountMoney;
+        this.customerName = customerName;
     }
 
     public BigDecimal getAmount() {
@@ -86,5 +88,13 @@ public class CommodityOrderRequest {
 
     public void setTicketDiscountMoney(BigDecimal ticketDiscountMoney) {
         this.ticketDiscountMoney = ticketDiscountMoney;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 }
