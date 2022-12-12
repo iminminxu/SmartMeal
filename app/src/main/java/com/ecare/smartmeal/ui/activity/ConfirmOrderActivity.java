@@ -511,12 +511,12 @@ public class ConfirmOrderActivity extends RootActivity<ConfirmOrderContract.Pres
                     mPaymentMethod = PAYMENT_METHOD_CASH;
                 }
                 if (StringUtils.isEmpty(mTaboos)) {
-                    mPresenter.createOrder(new BigDecimal(String.valueOf(NumUtils.parseDouble(totalStr))), mPreOrderInfo.getCouponsId(), mEatWay, mElderInfo == null ? "" : mElderInfo.getIdCard(), mSelectedDishes, mPreOrderInfo.getTicketDiscountMoney());
+                    mPresenter.createOrder(new BigDecimal(String.valueOf(NumUtils.parseDouble(totalStr))), mPreOrderInfo.getCouponsId(), mEatWay, mElderInfo == null ? "" : mElderInfo.getIdCard(), mSelectedDishes, mPreOrderInfo.getTicketDiscountMoney(), mElderInfo == null ? "" : mElderInfo.getName());
                 } else {
                     new XPopup.Builder(mContext).asConfirm("提示", "您选的套餐中含有忌口菜品，是否继续下一步？", "取消", "确定", new OnConfirmListener() {
                         @Override
                         public void onConfirm() {
-                            mPresenter.createOrder(new BigDecimal(String.valueOf(NumUtils.parseDouble(totalStr))), mPreOrderInfo.getCouponsId(), mEatWay, mElderInfo == null ? "" : mElderInfo.getIdCard(), mSelectedDishes, mPreOrderInfo.getTicketDiscountMoney());
+                            mPresenter.createOrder(new BigDecimal(String.valueOf(NumUtils.parseDouble(totalStr))), mPreOrderInfo.getCouponsId(), mEatWay, mElderInfo == null ? "" : mElderInfo.getIdCard(), mSelectedDishes, mPreOrderInfo.getTicketDiscountMoney(), mElderInfo == null ? "" : mElderInfo.getName());
                         }
                     }, null, false, R.layout.pop_taboos).show();
                 }

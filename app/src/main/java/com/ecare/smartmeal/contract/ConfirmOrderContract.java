@@ -49,7 +49,7 @@ public interface ConfirmOrderContract {
 
         void checkTaboos(String idCard, List<CommodityxAllResponseItem> list);
 
-        void createOrder(BigDecimal amount, Integer couponsId, int eatWay, String idCard, List<CommodityxAllResponseItem> list, BigDecimal ticketDiscountMoney);
+        void createOrder(BigDecimal amount, Integer couponsId, int eatWay, String idCard, List<CommodityxAllResponseItem> list, BigDecimal ticketDiscountMoney, String customerName);
 
         void pay(String subject, String totalAmount, String ftoken, String outTradeNo, String sellerId, String uid, String terminalParams);
 

@@ -10,11 +10,13 @@ public class OrderListRequest {
 
     private int pageNum;
     private int pageSize;
+    private int source;
     private int status;
 
-    public OrderListRequest(int pageNum, int pageSize, int status) {
+    public OrderListRequest(int pageNum, int pageSize, int source, int status) {
         this.pageNum = pageNum;
         this.pageSize = pageSize;
+        this.source = source;
         this.status = status;
     }
 
@@ -32,6 +34,14 @@ public class OrderListRequest {
 
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public int getSource() {
+        return source;
+    }
+
+    public void setSource(int source) {
+        this.source = source;
     }
 
     public int getStatus() {

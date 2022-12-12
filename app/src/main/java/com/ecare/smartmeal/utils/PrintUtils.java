@@ -197,6 +197,79 @@ public class PrintUtils {
         SunmiPrinterApi.getInstance().lineWrap(5);
     }
 
+    public static void printPendingOrder(OrderListResponse item, PrintTicketResponse data) throws PrinterException {
+        int[] width = new int[]{11, 10, 11};
+        int[] align = new int[]{0, 1, 2};
+        SunmiPrinterApi.getInstance().printerInit();
+        SunmiPrinterApi.getInstance().setAlignMode(1);
+        SunmiPrinterApi.getInstance().setFontZoom(1, 1);
+        SunmiPrinterApi.getInstance().printText(data.getMerchantName());
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().setAlignMode(0);
+        SunmiPrinterApi.getInstance().setFontZoom(2, 2);
+        SunmiPrinterApi.getInstance().printText("订单编号：" + item.getOrderno());
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().setFontZoom(1, 1);
+        SunmiPrinterApi.getInstance().printText("外送");
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("--------------------------------");
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("预约时间：");
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("下单时间：" + item.getCreatTime());
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("备注：");
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("--------------------------------");
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printColumnsText(new String[]{"名称", "数量", "价格"}, width, align);
+        //打印菜品
+        List<OrderListResponse.OrderDetailsDTO> orderDetails = item.getOrderDetails();
+        if (orderDetails != null && orderDetails.size() != 0) {
+            for (OrderListResponse.OrderDetailsDTO orderDetailsDTO : orderDetails) {
+                if (orderDetailsDTO == null) {
+                    continue;
+                }
+                int num = orderDetailsDTO.getNumber();
+                SunmiPrinterApi.getInstance().printColumnsText(new String[]{orderDetailsDTO.getName(), "x" + num, NumUtils.parsePrintAmount(orderDetailsDTO.getSinglePrice())}, width, align);
+                List<OrderListResponse.OrderDetailsDTO.ItemListDTO> itemList = orderDetailsDTO.getItemList();
+                if (itemList == null || itemList.size() == 0) {
+                    continue;
+                }
+                StringBuilder builder = new StringBuilder();
+                for (OrderListResponse.OrderDetailsDTO.ItemListDTO itemListDTO : itemList) {
+                    if (itemListDTO == null) {
+                        continue;
+                    }
+                    builder.append(itemListDTO.getName()).append(itemListDTO.getNum()).append("；");
+                }
+                if (builder.length() != 0) {
+                    SunmiPrinterApi.getInstance().printText("【" + builder.toString() + "】");
+                    SunmiPrinterApi.getInstance().flush();
+                }
+            }
+        }
+        SunmiPrinterApi.getInstance().printText("--------------------------------");
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("打包费：" + NumUtils.parsePrintAmount(data.getPacking()));
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("配送费：0.00");
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText("优惠：" + NumUtils.parsePrintAmount(data.getTicketDiscountMoney()));
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().setFontZoom(2, 2);
+        SunmiPrinterApi.getInstance().printText("实付：￥" + NumUtils.parsePrintAmount(item.getAmount()));
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().setFontZoom(1, 1);
+        SunmiPrinterApi.getInstance().printText("--------------------------------");
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText(item.getLiveAddr());
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().printText(item.getName() + " " + item.getMobile());
+        SunmiPrinterApi.getInstance().flush();
+        SunmiPrinterApi.getInstance().lineWrap(5);
+    }
+
     public static void printMemberRechargeOrder(CustomerListResponse memberInfo, BigDecimal rechargeAmount, BigDecimal paymentAmount) throws PrinterException {
         if (memberInfo == null) {
             ToastUtils.showShort("会员信息加载失败，无法打印小票！");

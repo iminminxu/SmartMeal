@@ -57,10 +57,10 @@ public class HomePendingFragment extends SimpleFragment {
         //设置ViewPager
         String[] titles = {"收银台", "外送订单", "到店取货", "长期预定"};
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(OrderCategoryFragment.newInstance(OrderListFragment.ORDER_WAY_CASHIER));
-        fragmentList.add(OrderCategoryFragment.newInstance(OrderListFragment.ORDER_WAY_DELIVERY));
-        fragmentList.add(OrderCategoryFragment.newInstance(OrderListFragment.ORDER_WAY_SHOP));
-        fragmentList.add(OrderCategoryFragment.newInstance(OrderListFragment.ORDER_WAY_BOOKING));
+        fragmentList.add(OrderCategoryFragment.newInstance(true, OrderListNewFragment.SOURCE_CASHIER));
+        fragmentList.add(OrderCategoryFragment.newInstance(true, OrderListNewFragment.SOURCE_DELIVERY));
+        fragmentList.add(OrderCategoryFragment.newInstance(false, OrderListFragment.ORDER_WAY_SHOP));
+        fragmentList.add(OrderCategoryFragment.newInstance(false, OrderListFragment.ORDER_WAY_BOOKING));
         vpPending.setAdapter(new BaseFragmentPageAdapter(getChildFragmentManager(), fragmentList, titles));
         tlPending.setupWithViewPager(vpPending);
     }

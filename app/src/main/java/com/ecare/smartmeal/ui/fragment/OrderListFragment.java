@@ -40,14 +40,13 @@ public class OrderListFragment extends RootFragment<OrderListContract.Presenter>
     public static final int ORDER_WAY_DELIVERY = 1; //外送点餐
     public static final int ORDER_WAY_SHOP = 2;     //到店取餐
     public static final int ORDER_WAY_BOOKING = 3;  //长期预定
-    public static final int ORDER_WAY_CASHIER = 4;  //收银台
     //订单状态
     public static final int STATUS_PENDING_ORDER = 1;    //待接单
     public static final int STATUS_PENDING_DELIVERY = 2; //待配送
     public static final int STATUS_MEAL_WAITING = 3;     //待取餐
     public static final int STATUS_TO_BE_SERVED = 4;     //待配餐
 
-    @IntDef({ORDER_WAY_DELIVERY, ORDER_WAY_SHOP, ORDER_WAY_BOOKING, ORDER_WAY_CASHIER})
+    @IntDef({ORDER_WAY_DELIVERY, ORDER_WAY_SHOP, ORDER_WAY_BOOKING})
     @Retention(RetentionPolicy.SOURCE)
     public @interface OrderWay {
 
