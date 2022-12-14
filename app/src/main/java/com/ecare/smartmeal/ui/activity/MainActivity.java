@@ -1,5 +1,6 @@
 package com.ecare.smartmeal.ui.activity;
 
+import android.Manifest;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Color;
@@ -19,6 +20,8 @@ import com.alipay.iot.sdk.InitFinishCallback;
 import com.alipay.zoloz.smile2pay.MetaInfoCallback;
 import com.alipay.zoloz.smile2pay.Zoloz;
 import com.alipay.zoloz.smile2pay.ZolozConnectCallback;
+import com.blankj.utilcode.util.ResourceUtils;
+import com.blankj.utilcode.util.SDCardUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.ecare.smartmeal.R;
@@ -39,7 +42,9 @@ import com.sunmi.externalprinterlibrary.api.ConnectCallback;
 import com.sunmi.externalprinterlibrary.api.PrinterException;
 import com.sunmi.externalprinterlibrary.api.SunmiPrinter;
 import com.sunmi.externalprinterlibrary.api.SunmiPrinterApi;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import java.io.File;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -101,6 +106,8 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     protected void initViews(@Nullable Bundle savedInstanceState) {
         tvMobile.setText(desensitizedPhoneNumber(SPUtils.getInstance(Constants.SP_USER).getString(Constants.SP_MOBILE)));
         switchFragment(TAG_CASHIER);
+        //保存银联配置文件
+        saveUnionPayConfigurationFile();
         //初始化IoT
         initIoT();
         //连接打印机
@@ -157,6 +164,23 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
             default:
                 return new HomeCashierFragment();
         }
+    }
+
+    /**
+     * 保存银联配置文件
+     */
+    private void saveUnionPayConfigurationFile() {
+        Disposable disposable = new RxPermissions(this)
+                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean aBoolean) throws Exception {
+                        File file = new File(SDCardUtils.getSDCardPathByEnvironment() + File.separator + "Android" + File.separator + "SP30POS.INI");
+                        if (!file.exists()) {
+                            ResourceUtils.copyFileFromAssets("SP30POS.INI", file.getAbsolutePath());
+                        }
+                    }
+                });
     }
 
     /**

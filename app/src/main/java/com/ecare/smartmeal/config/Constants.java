@@ -59,9 +59,9 @@ public class Constants {
 
     //========== Key ==========
 
-    public static final String KEY_ABCP_APPLICATION_APPID = "2021003130652006";
+    public static final String KEY_ABCP_APPLICATION_APPID = "2021003169616639";
     public static final String KEY_ABCP_APPLICATION_VERSION = "1.0.0.0";
-    public static final String KEY_TEMPLATE_APP_ID = "2021003130611008";
+    public static final String KEY_TEMPLATE_APP_ID = "2021003168658663";
     public static final String KEY_PARTNER_ID = "2088441214796590";
     public static final String KEY_PARTNER_NAME = "杭州易护科技有限公司";
     public static final String KEY_MERCHANT_ID = "2088531881197881";
