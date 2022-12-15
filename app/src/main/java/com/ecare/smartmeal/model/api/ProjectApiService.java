@@ -8,6 +8,8 @@ import com.ecare.smartmeal.model.bean.req.ChangeOrderStatusRequest;
 import com.ecare.smartmeal.model.bean.req.CommodityOrderPayRequest;
 import com.ecare.smartmeal.model.bean.req.CommodityOrderRequest;
 import com.ecare.smartmeal.model.bean.req.ConfirmDeliveryRequest;
+import com.ecare.smartmeal.model.bean.req.CustomerComboDeliveryRequest;
+import com.ecare.smartmeal.model.bean.req.CustomerComboEatRequest;
 import com.ecare.smartmeal.model.bean.req.CustomerInfoRequest;
 import com.ecare.smartmeal.model.bean.req.CustomerListRequest;
 import com.ecare.smartmeal.model.bean.req.CustomerRequest;
@@ -24,6 +26,7 @@ import com.ecare.smartmeal.model.bean.rsp.CommodityCombUnitVo;
 import com.ecare.smartmeal.model.bean.rsp.CommodityOrderPayResponse;
 import com.ecare.smartmeal.model.bean.rsp.CommodityxAllResponse;
 import com.ecare.smartmeal.model.bean.rsp.CustomerBalanceRecordx;
+import com.ecare.smartmeal.model.bean.rsp.CustomerComboResponse;
 import com.ecare.smartmeal.model.bean.rsp.CustomerInfoResponse;
 import com.ecare.smartmeal.model.bean.rsp.CustomerListResponse;
 import com.ecare.smartmeal.model.bean.rsp.ElderCodeResponse;
@@ -138,4 +141,16 @@ public interface ProjectApiService {
 
     @POST("order/updateElderInfo")
     Flowable<BaseResponse<String>> updateElderInfo(@Body CustomerRequest customerRequest);
+
+    @POST("customer/combo/getEatCustomerComboList")
+    Flowable<BaseResponse<CustomerComboResponse>> getComboDineList();
+
+    @POST("customer/combo/getDeliveryCustomerComboList")
+    Flowable<BaseResponse<CustomerComboResponse>> getComboDeliverList();
+
+    @POST("customer/combo/leave")
+    Flowable<BaseResponse<String>> comboCancel(@Body CustomerComboEatRequest customerComboEatRequest);
+
+    @POST("customer/combo/delivery")
+    Flowable<BaseResponse<String>> comboDeliver(@Body CustomerComboDeliveryRequest customerComboDeliveryRequest);
 }

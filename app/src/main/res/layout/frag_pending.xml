@@ -4,8 +4,8 @@
     android:id="@+id/ll_pending"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/dp_13">
+    android:layout_margin="@dimen/dp_13"
+    android:orientation="vertical">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tl_pending"
